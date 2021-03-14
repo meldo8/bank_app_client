@@ -6,6 +6,7 @@ namespace App\Api;
 
 use App\Entity\BankAction;
 use App\Entity\Client;
+use App\Entity\ClientResponse;
 
 class BankServerApi
 {
@@ -21,20 +22,23 @@ class BankServerApi
         $this->apiClient->sendRequest(
         'POST',
             'api/bank_actions',
-            [],
+            ['Content-Type' => 'application/json'],
             $this->apiClient->serializeRequestBody($bankAction)
         );
     }
 
-    public function getClient(string $accountNumber): Client
+    /**
+     * @return Client[]
+     */
+    public function getClient(string $accountNumber): array
     {
         $response = $this->apiClient->sendRequest(
             'GET',
-            sprintf('api/clients?account_number=%', $accountNumber),
-            [],
+            sprintf('api/clients/?accountNumber=%s', $accountNumber),
+            ['Accept' => 'application/json'],
             null
         );
 
-        return $this->apiClient->deserializeResponse($response, Client::class);
+        return $this->apiClient->deserializeResponse($response, sprintf('array<%s>', Client::class));
     }
 }

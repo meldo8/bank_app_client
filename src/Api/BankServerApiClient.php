@@ -3,8 +3,10 @@
 namespace App\Api;
 
 
+use App\Serializer\BankSerializerBuilder;
+use JMS\Serializer\Serializer;
+use JMS\Serializer\SerializerBuilder;
 use Psr\Log\LoggerInterface;
-use Symfony\Component\Serializer\SerializerInterface;
 use Symfony\Contracts\HttpClient\HttpClientInterface;
 use Symfony\Contracts\HttpClient\ResponseInterface;
 
@@ -13,16 +15,16 @@ class BankServerApiClient
     private HttpClientInterface $client;
 
     private LoggerInterface $logger;
-    private  SerializerInterface $serializer;
+
+    private Serializer $serializer;
 
     public function __construct(
         HttpClientInterface $httpBankClient,
-        LoggerInterface $logger,
-        SerializerInterface $serializer
+        LoggerInterface $logger
     ) {
         $this->client = $httpBankClient;
         $this->logger = $logger;
-        $this->serializer = $serializer;
+        $this->serializer = BankSerializerBuilder::build();
     }
 
     public function sendRequest(
@@ -33,7 +35,7 @@ class BankServerApiClient
     ): ResponseInterface {
         $response = $this->client->request(
             $method,
-            $uri,
+            'http://127.0.0.1:8000/' . $uri,
             [
                 'headers' => $headers,
                 'body' => $body,

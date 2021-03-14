@@ -11,8 +11,8 @@
         "symfony/http-client": "^4.4",
         "symfony/framework-bundle": "4.4.*",
         "symfony/web-server-bundle": "4.4.*",
+        "jms/serializer": "^3.6",
         "symfony/yaml": "4.4.*",
-        "symfony/serializer": "4.4.*",
         "ext-json": "*"
     },
     "require-dev": {
