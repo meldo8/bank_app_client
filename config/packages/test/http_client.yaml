@@ -1,0 +1,5 @@
+framework:
+    http_client:
+        scoped_clients:
+            http.bank.client:
+                base_uri: 'https://0.0.0.0'
