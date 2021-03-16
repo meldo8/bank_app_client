@@ -1,4 +1,0 @@
-framework:
-    http_client:
-        base_uri: 'https://0.0.0.0'
-

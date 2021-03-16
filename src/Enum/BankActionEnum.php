@@ -8,4 +8,9 @@ class BankActionEnum
     public const WITHDRAW = 'W';
     public const TRANSFER = 'T';
     public const BALANCE = 'B';
+
+    public static function getAllBankActions(): array
+    {
+        return [self::DEPOSIT, self::WITHDRAW, self::TRANSFER, self::BALANCE];
+    }
 }

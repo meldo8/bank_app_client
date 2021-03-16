@@ -41,4 +41,19 @@ class BankServerApi
 
         return $this->apiClient->deserializeResponse($response, sprintf('array<%s>', Client::class));
     }
+
+    /**
+     * @return Client[]
+     */
+    public function getClients(): array
+    {
+        $response = $this->apiClient->sendRequest(
+            'GET',
+            'api/clients',
+            ['Accept' => 'application/json'],
+            null
+        );
+
+        return $this->apiClient->deserializeResponse($response, sprintf('array<%s>', Client::class));
+    }
 }
