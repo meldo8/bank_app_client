@@ -2,10 +2,8 @@
 
 namespace App\Api;
 
-
 use App\Serializer\BankSerializerBuilder;
 use JMS\Serializer\Serializer;
-use JMS\Serializer\SerializerBuilder;
 use Psr\Log\LoggerInterface;
 use Symfony\Contracts\HttpClient\HttpClientInterface;
 use Symfony\Contracts\HttpClient\ResponseInterface;
